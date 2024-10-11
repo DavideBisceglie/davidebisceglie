@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: #2980b9;
+  color: white;
+  transform: rotateY(180deg);
+}
+</style>
+</head>
+<body>
+
+<h1>Card Flip with Text</h1>
+<h3>Hover over the image below:</h3>
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="c:\Users\davide.bisceglie\Documents\fileditor\1.JPEG.jpeg" alt="Avatar" style="width:300px;height:300px;">
+    </div>
+    <div class="flip-card-back">
+        <h1>Davide Bisceglie</h1>
+      <p>Ho 16 anni e frequento la terza liceo scientifico applicato</p>
+      <p>Vivo a Nichelino e sono nato il 4 luglio 2008<p>
+      </p>La mia squadra del cuore è la Juventus. Gli altri miei interessi sono perlopiù legati all'ambito informatico, infatti mi piace giocare ai videogiochi ma anche usare il PC in ogni modo. Come "skills" ho sviluppato competenze in informatica, problem solving e in ingleseNon so bene dove ho sviluppato queste competenze, per esempio guardavo video o giocavi a giochi in inglese e questo mi ha aiutato tanto a migliorare in entrambi i campi. Dopo il diploma vorrei andare all'Università ma ancora non ho deciso quale facoltà scegliere.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
