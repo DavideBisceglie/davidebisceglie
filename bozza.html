@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Esercizi con Bottoni</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+    .container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .div-box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin: 10px;
+      width: 200px;
+      text-align: center;
+    }
+    .output {
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      height: 150px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Esercizi con Bottoni</h1>
+
+  <div class="container">
+    <!-- Esercizio 1 -->
+    <div class="div-box">
+      <button class="w3-button w3-red" onclick="stampaNumeri()">Stampa da 1 a 100</button>
+      <div class="output" id="output1"></div>
+    </div>
+
+    <!-- Esercizio 2 -->
+    <div class="div-box">
+      <button class="w3-button w3-blue" onclick="stampaPari()">Stampa Numeri Pari</button>
+      <div class="output" id="output2"></div>
+    </div>
+
+    <!-- Esercizio 3 -->
+    <div class="div-box">
+      <button class="w3-button w3-yellow" onclick="stampaTabellina9()">Stampa Tabellina del 9</button>
+      <div class="output" id="output3"></div>
+    </div>
+
+    <!-- Esercizio 4 -->
+    <div class="div-box">
+      <button class="w3-button w3-green" onclick="stampaNumeriCasuali()">Stampa Numeri Casuali</button>
+      <div class="output" id="output4"></div>
+    </div>
+  </div>
+
+  <script>
+    // Esercizio 1: Stampa i numeri da 1 a 100
+    function stampaNumeri() {
+      let output = "";
+      for (let i = 1; i <= 100; i++) {
+        output += i + " ";
+      }
+      document.getElementById("output1").innerHTML = output;
+    }
+
+    // Esercizio 2: Stampa numeri pari da 1 a 100
+    function stampaPari() {
+      let output = "";
+      for (let i = 2; i <= 100; i += 2) {
+        output += i + " ";
+      }
+      document.getElementById("output2").innerHTML = output;
+    }
+
+    // Esercizio 3: Stampa la tabellina del 9 fino a 1000
+    function stampaTabellina9() {
+      let output = "";
+      for (let i = 9; i <= 1000; i += 9) {
+        output += i + " ";
+      }
+      document.getElementById("output3").innerHTML = output;
+    }
+
+    // Esercizio 4: Stampa 10 numeri casuali da 1 a 90
+    function stampaNumeriCasuali() {
+      let output = "";
+      for (let i = 0; i < 10; i++) {
+        output += Math.floor(Math.random() * 90) + 1 + " ";
+      }
+      document.getElementById("output4").innerHTML = output;
+    }
+  </script>
+
+</body>
+</html>
