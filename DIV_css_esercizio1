@@ -1,0 +1,44 @@
+ <!DOCTYPE html>
+<html lang="it">
+<testa>
+    <meta set di caratteri="UTF-8">
+    <meta name="viewport" content="width=larghezza-dispositivo, scala-iniziale=1.0">
+    <title>Esempio del metodo Box</title>
+    <stile>
+        
+        .contenitore-scatola {
+            visualizzazione: flessibile;          
+            spazio: 10px;              
+            imbottitura: 20px;
+            justify-content: centro;
+        } 
+        .scatola {
+            larghezza: 100px;
+            altezza: 100px;
+            colore di sfondo: #dce8f9;
+            bordo: 2px solido #1363d2;
+            visualizzazione: flessibile;         
+            align-items: centro;    
+            giustifica-contenuto: centro;
+            font-weight: grassetto;
+            colore: #333;
+            famiglia di caratteri: Arial, sans-serif;
+        }
+        .box1 { colore di sfondo: #ff6347; }
+        .box2 { colore di sfondo: #ffa500; }
+        .box3 { colore di sfondo: #ffff00; }
+        .box4 { colore di sfondo: #32cd32; }
+        .box5 { colore di sfondo: #1e90ff; }
+    </stile>
+</testa>
+<corpo>
+    <div class="contenitore-scatola">
+        <div class="box box1">Scatola 1</div>
+        <div class="box box2">Scatola 2</div>
+        <div class="box box3">Scatola 3</div>
+        <div class="box box4">Scatola 4</div>
+        <div class="box box5">Scatola 5</div>
+    </div>
+
+</corpo>
+</html> 
