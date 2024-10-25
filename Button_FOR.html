@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Esercizi con i pulsanti</title>
+  <style>
+    /* Stile generale per i div */
+    .container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
+
+    /* Stili per i pulsanti */
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      color: white;
+      margin: 10px;
+      border-radius: 5px;
+    }
+
+    .red-button { background-color: red; }
+    .blue-button { background-color: blue; }
+    .yellow-button { background-color: gold; color: black; }
+    .green-button { background-color: green; }
+
+    /* Stile per il risultato */
+    .result {
+      margin-top: 10px;
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Esercizi con i pulsanti</h1>
+
+  <div class="container">
+    <div>
+      <button class="red-button" onclick="stampaNumeri()">Stampa Numeri 1-100</button>
+      <div id="result1" class="result"></div>
+    </div>
+
+    <div>
+      <button class="blue-button" onclick="stampaNumeriPari()">Stampa Numeri Pari</button>
+      <div id="result2" class="result"></div>
+    </div>
+
+    <div>
+      <button class="yellow-button" onclick="stampaTabellina9()">Stampa Tabellina del 9</button>
+      <div id="result3" class="result"></div>
+    </div>
+
+    <div>
+      <button class="green-button" onclick="stampaNumeriCasuali()">Stampa Numeri Casuali</button>
+      <div id="result4" class="result"></div>
+    </div>
+  </div>
+
+  <script>
+    function stampaNumeri() {
+      let risultato = '';
+      for (let i = 1; i <= 100; i++) {
+        risultato += i + ' ';
+      }
+      document.getElementById("result1").innerText = risultato;
+    }
+
+    function stampaNumeriPari() {
+      let risultato = '';
+      for (let i = 2; i <= 100; i += 2) {
+        risultato += i + ' ';
+      }
+      document.getElementById("result2").innerText = risultato;
+    }
+
+    function stampaTabellina9() {
+      let risultato = '';
+      for (let i = 9; i <= 1000; i += 9) {
+        risultato += i + ' ';
+      }
+      document.getElementById("result3").innerText = risultato;
+    }
+
+    function stampaNumeriCasuali() {
+      let risultato = '';
+      for (let i = 0; i < 10; i++) {
+        risultato += Math.floor(Math.random() * 90) + 1 + ' ';
+      }
+      document.getElementById("result4").innerText = risultato;
+    }
+  </script>
+
+</body>
+</html>
