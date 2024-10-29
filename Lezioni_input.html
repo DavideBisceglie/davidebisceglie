@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Calcolo Dislivello</title>
+</head>
+<body>
+    <h3>Calcola il Dislivello</h3>
+    <label>Partenza (m): </label>
+    <input type="number" id="partenza">
+    <br>
+    <label>Arrivo (m): </label>
+    <input type="number" id="arrivo">
+    <br><br>
+    <button onclick="calcolaDislivello()">Calcola</button>
+    <p id="risultato"></p>
+
+    <script>
+        function calcolaDislivello() {
+            const partenza = document.getElementById("partenza").value;
+            const arrivo = document.getElementById("arrivo").value;
+            const dislivello = Math.abs(arrivo - partenza);
+            document.getElementById("risultato").innerText = `Dislivello totale: ${dislivello} metri`;
+        }
+    </script>
+</body>
+</html>
