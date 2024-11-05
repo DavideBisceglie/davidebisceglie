@@ -1,0 +1,17 @@
+squadre = list(range(1, 21))
+partite = []
+for i in range(len(squadre)):
+    for j in range(i + 1, len(squadre)):
+        partite.append((squadre[i], squadre[j]))
+import random
+
+calendario = []
+for partita in partite:
+    if random.choice([True, False]):
+        casa, trasferta = partita
+    else:
+        trasferta, casa = partita
+    calendario.append((casa, trasferta))
+random.shuffle(calendario)
+for giornata, (casa, trasferta) in enumerate(calendario, start=1):
+    print(f"Giornata {giornata}: Squadra {casa} vs Squadra {trasferta}")
