@@ -1,10 +1,19 @@
-squadre = list(range(1, 21))
+import random
+
+# Step 1: Crea la lista delle squadre della Serie A
+squadre = [
+    "Atalanta", "Bologna", "Como", "Cagliari", "Empoli", "Fiorentina",
+    "Genoa", "Hellas Verona", "Inter", "Juventus", "Lazio", "Lecce",
+    "Milan", "Monza", "Napoli", "Parma", "Roma", "Torino", "Udinese", "Venezia"
+]
+
+# Step 2: Genera tutte le possibili partite (abbinamenti unici)
 partite = []
 for i in range(len(squadre)):
     for j in range(i + 1, len(squadre)):
         partite.append((squadre[i], squadre[j]))
-import random
 
+# Step 3: Alterna Casa e Trasferta casualmente
 calendario = []
 for partita in partite:
     if random.choice([True, False]):
@@ -12,6 +21,10 @@ for partita in partite:
     else:
         trasferta, casa = partita
     calendario.append((casa, trasferta))
+
+# Step 4: Mescola l'ordine delle partite per un calendario casuale
 random.shuffle(calendario)
+
+# Step 5: Stampa il calendario per visualizzare le giornate
 for giornata, (casa, trasferta) in enumerate(calendario, start=1):
-    print(f"Giornata {giornata}: Squadra {casa} vs Squadra {trasferta}")
+    print(f"Giornata {giornata}: {casa} vs {trasferta}")
