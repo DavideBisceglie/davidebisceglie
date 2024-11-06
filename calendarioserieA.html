@@ -17,10 +17,22 @@
         th {
             background-color: #f2f2f2;
         }
+        button {
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
     <h1>Calendario Serie A</h1>
+    <button onclick="generaEVisualizzaCalendario()">Genera Calendario</button>
     <table id="calendario">
         <thead>
             <tr>
@@ -35,7 +47,7 @@
     </table>
 
     <script>
-        const squadre = ["Atalanta", "Bologna", "Cagliari", "Como" "Empoli", "Fiorentina", "Genoa", "Inter", "Juventus", "Lazio", "Lecce", "Milan", "Monza", "Napoli", "Parma" "Roma", "Torino", "Udinese", "Verona", "Venezia"];
+        const squadre = ["Atalanta", "Bologna", "Cagliari", "Empoli", "Fiorentina", "Genoa", "Inter", "Juventus", "Lazio", "Lecce", "Milan", "Napoli", "Roma", "Salernitana", "Sampdoria", "Sassuolo", "Torino", "Udinese", "Verona", "Spezia"];
 
         function shuffle(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -62,6 +74,7 @@
 
         function renderCalendario(giornate) {
             const tbody = document.querySelector("#calendario tbody");
+            tbody.innerHTML = "";  // Pulisce il contenuto della tabella
             giornate.forEach((giornata, index) => {
                 giornata.forEach(partita => {
                     const tr = document.createElement("tr");
@@ -71,8 +84,11 @@
             });
         }
 
-        const calendario = generaCalendario();
-        renderCalendario(calendario);
+        function generaEVisualizzaCalendario() {
+            const calendario = generaCalendario();
+            renderCalendario(calendario);
+        }
     </script>
 </body>
 </html>
+
