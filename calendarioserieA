@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario Serie A</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calendario Serie A</h1>
+    <table id="calendario">
+        <thead>
+            <tr>
+                <th>Giornata</th>
+                <th>Squadra Casa</th>
+                <th>Squadra Trasferta</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Le partite verranno generate qui -->
+        </tbody>
+    </table>
+
+    <script>
+        const squadre = ["Atalanta", "Bologna", "Cagliari", "Como" "Empoli", "Fiorentina", "Genoa", "Inter", "Juventus", "Lazio", "Lecce", "Milan", "Monza", "Napoli", "Parma" "Roma", "Torino", "Udinese", "Verona", "Venezia"];
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function generaCalendario() {
+            let giornate = [];
+            for (let i = 0; i < squadre.length - 1; i++) {
+                let giornataAndata = [];
+                let giornataRitorno = [];
+                for (let j = 0; j < squadre.length / 2; j++) {
+                    giornataAndata.push([squadre[j], squadre[squadre.length - 1 - j]]);
+                    giornataRitorno.push([squadre[squadre.length - 1 - j], squadre[j]]);
+                }
+                giornate.push(giornataAndata);
+                giornate.push(giornataRitorno);
+                shuffle(squadre);
+            }
+            return giornate;
+        }
+
+        function renderCalendario(giornate) {
+            const tbody = document.querySelector("#calendario tbody");
+            giornate.forEach((giornata, index) => {
+                giornata.forEach(partita => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `<td>${index + 1}</td><td>${partita[0]}</td><td>${partita[1]}</td>`;
+                    tbody.appendChild(tr);
+                });
+            });
+        }
+
+        const calendario = generaCalendario();
+        renderCalendario(calendario);
+    </script>
+</body>
+</html>
