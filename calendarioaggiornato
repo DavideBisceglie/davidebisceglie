@@ -1,4 +1,4 @@
-import random
+<!DOCTYPE html>
 
 # Step 1: Crea la lista delle squadre della Serie A
 squadre = [
