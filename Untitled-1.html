@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown con Link</title>
+</head>
+<body>
+
+<h1 id="countdown">10</h1>
+<div id="link" style="display: none;">
+    <a href="https://www.youtube.com/watch?v=uOb7YdfuR2U target="_blank">Vai al link</a>
+</div>
+
+<script>
+    let counter = 10;
+    const countdownElement = document.getElementById('countdown');
+    const linkElement = document.getElementById('link');
+
+    const countdown = setInterval(() => {
+        counter--;
+        countdownElement.textContent = counter;
+
+        if (counter <= 0) {
+            clearInterval(countdown);
+            countdownElement.style.display = 'none';
+            linkElement.style.display = 'block';
+        }
+    }, 1000);
+</script>
+
+</body>
+</html>
