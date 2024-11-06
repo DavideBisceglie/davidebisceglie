@@ -1,0 +1,60 @@
+' Definizione delle squadre di Serie A
+Dim SquadreSerieA(19) As String
+SquadreSerieA(0) = "Atalanta"
+SquadreSerieA(1) = "Bologna"
+SquadreSerieA(2) = "Cagliari"
+SquadreSerieA(3) = "Como"
+SquadreSerieA(4) = "Empoli"
+SquadreSerieA(5) = "Fiorentina"
+SquadreSerieA(6) = "Genoa"
+SquadreSerieA(7) = "Inter"
+SquadreSerieA(8) = "Juventus"
+SquadreSerieA(9) = "Lazio"
+SquadreSerieA(10) = "Lecce"
+SquadreSerieA(11) = "Milan"
+SquadreSerieA(12) = "Monza"
+SquadreSerieA(13) = "Napoli"
+SquadreSerieA(14) = "Parma"
+SquadreSerieA(15) = "Roma"
+SquadreSerieA(16) = "Torino"
+SquadreSerieA(17) = "Udinese"
+SquadreSerieA(18) = "Verona"
+SquadreSerieA(19) = "Venezia"
+
+'Controllo che per ogni giornata ci siano tutte le partite
+Do While Not Fine = 1
+    ' Recupero tutte le giornate che non hanno tutte le partite 
+    MySql = "SELECT NumGiornata FROM NumeroGiornate WHERE NumGiornata < " & MaxSquadre & " "
+    MySql = MySql & "AND NumGiornata NOT IN (SELECT NumGiornata FROM CampionatiCalendario WHERE IdCampionato = " & CmbCampionato & " AND IdGirone = " & CmbGirone & " GROUP BY NumGiornata, IdCampionato, IdGirone HAVING COUNT(IDSquadra1) = " & Int(CInt(MaxSquadre) / 2) & " AND IdCampionato = " & CmbCampionato & " AND IdGirone = " & CmbGirone & ") "
+    MySql = MySql & "ORDER BY NumGiornata "
+    Rs.Open MySql, Conn
+
+    If Not Rs.EOF Then
+        Rs.MoveFirst
+        Do While Not Rs.EOF
+            ' Recupero la partita mancante
+            MySql = "SELECT TOP 1 * FROM CampionatiCalendario "
+            MySql = MySql & "WHERE IdSquadra1 NOT IN (SELECT IdSquadra1 FROM CampionatiCalendario WHERE IdCampionato = " & CmbCampionato & " AND IdGirone = " & CmbGirone & " AND NumGiornata = " & Rs("NumGiornata") & " GROUP BY IdSquadra1) "
+            MySql = MySql & "AND IdSquadra1 NOT IN (SELECT IdSquadra2 FROM CampionatiCalendario WHERE IdCampionato = " & CmbCampionato & " AND IdGirone = " & CmbGirone & " AND NumGiornata = " & Rs("NumGiornata") & " GROUP BY IdSquadra2) "
+            MySql = MySql & "AND IdSquadra2 NOT IN (SELECT IdSquadra1 FROM CampionatiCalendario WHERE IdCampionato = " & CmbCampionato & " AND IdGirone = " & CmbGirone & " AND NumGiornata = " & Rs("NumGiornata") & " GROUP BY IdSquadra1) "
+            MySql = MySql & "AND IdSquadra2 NOT IN (SELECT IdSquadra2 FROM CampionatiCalendario WHERE IdCampionato = " & CmbCampionato & " AND IdGirone = " & CmbGirone & " AND NumGiornata = " & Rs("NumGiornata") & " GROUP BY IdSquadra2) "
+            MySql = MySql & "ORDER BY NumGiornata, IdSquadra2, IdSquadra1 "
+            Rs2.Open MySql, Conn
+
+            If Not Rs2.EOF Then
+                ' Aggiorno la giornata
+                MySql = "UPDATE CampionatiCalendario SET "
+                MySql = MySql & "NumGiornata = " & Rs("NumGiornata") & " "
+                MySql = MySql & "WHERE IdCampionato = " & CmbCampionato & " AND IdGirone = " & CmbGirone & " AND IdSquadra1 = " & Rs2("IdSquadra1") & " AND IdSquadra2 = " & Rs2("IdSquadra2")
+                Conn.Execute MySql
+            End If
+            Rs2.Close
+            
+            Rs.MoveNext
+        Loop
+    Else
+        ' Fine ciclo
+        Fine = 1
+    End If
+    Rs.Close
+Loop
