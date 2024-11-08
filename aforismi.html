@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aforismi di Scienziati</title>
+  <style>
+    .aforisma {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Aforismi di Scienziati</h1>
+
+  <div class="aforisma">
+    <p id="aforisma1">"La scienza è un modo di pensare molto più che un corpo di conoscenze." – Carl Sagan</p>
+    <button onclick="nascondiTesto('aforisma1')">Nascondi Testo 1</button>
+  </div>
+
+  <div class="aforisma">
+    <p id="aforisma2">"L'immaginazione è più importante della conoscenza." – Albert Einstein</p>
+    <button onclick="nascondiTesto('aforisma2')">Nascondi Testo 2</button>
+  </div>
+
+  <div class="aforisma">
+    <p id="aforisma3">"La scienza non è mai veramente in conflitto con la religione; il conflitto è con la superstizione." – Carl Sagan</p>
+    <button onclick="nascondiTesto('aforisma3')">Nascondi Testo 3</button>
+  </div>
+
+  <div class="aforisma">
+    <p id="aforisma4">"La natura è il miglior laboratorio in cui un scienziato possa lavorare." – Galileo Galilei</p>
+    <button onclick="nascondiTesto('aforisma4')">Nascondi Testo 4</button>
+  </div>
+
+  <div class="aforisma">
+    <p id="aforisma5">"Se non riuscite a spiegarlo in modo semplice, non lo avete capito abbastanza bene." – Richard Feynman</p>
+    <button onclick="nascondiTesto('aforisma5')">Nascondi Testo 5</button>
+  </div>
+
+  <script>
+    function nascondiTesto(id) {
+      const testo = document.getElementById(id);
+      testo.style.display = "none"; // Nasconde il testo
+    }
+  </script>
+
+</body>
+</html>
