@@ -3,19 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contatore Decrementale</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            margin-top: 50px;
-        }
-        #counter {
-            font-size: 2em;
-            margin: 20px;
-        }
-        #output {
-            margin-top: 20px;
-        }
+    <title>Contatore Decrementale con Centesimi</title>
+</head>
+<body>
+
+<div id="counter" style="font-size: 24px;">100.00</div>
+<button id="stopButton" onclick="stopCounter()" disabled>Ferma il Contatore</button>
+<div id="results"></div>
+<div id="sumOfDifferences"></div>
+
+<script>
+    let count = 100.00;  // Contatore iniziale
+    const interval = 10; // 10 ms per centesimi
+    let intervalID;
+    let totalDifference = 0; // Somma delle differenze
+    const counterElement = document.getElementById('counter');
+    const resultsElement = document.getElementById('results');
+    const sumElement = document.getElementById('sumOfDifferences');
+    
+    // Avvia il contatore
+    function startCounter() {
+        intervalID = setInterval(() => {
+            count -= 0.01;
+            count = Math.max(0, count);  // Assicura che non vada sotto zero
+            counterElement.textContent = count.toFixed(2);
+            
+            // Abilita il pulsante se il contatore è multiplo di 10
+            if (Math.floor(count) % 10 === 0 && count > 0) {
+                document.getElementById('stopButton').disabled = false;
+            } else {
+                document.getElementById('stopButton').disabled = true;
+            }
+
+            // Ferma il contatore quando arriva a 0
+            if (count === 0) {
+                clearInterval(intervalID);
+                sumElement.textContent = `Somma delle differenze: ${totalDifference.toFixed(2)}`;
+            }
+        }, interval);
+    }
+
+    // Ferma il contatore e calcola la differenza
+    function stopCounter() {
+        const optimalTime = Math.floor(count / 10) * 10; // Tempo ottimale (multiplo di 10)
+        const difference = Math.abs(optimalTime - count).toFixed(2); // Differenza tra il tempo ottimale e quello effettivo
+        totalDifference += parseFloat(difference); // Aggiunge la differenza alla somma totale
+        
+        // Stampa il risultato
+        const result = document.createElement('p');
+        result.textContent = `Tempo ottimale: ${optimalTime}, tuo tempo: ${count.toFixed(2)}, differenza: ${difference}`;
+        resultsElement.appendChild(result);
+        
+        document.getElementById('stopButton').disabled = true; // Disabilita il pulsante
+    }
+
+    // Avvia il contatore all'apertura della pagina
+    window.onload = startCounter;
+</script>
+
+</body>
+</html>
