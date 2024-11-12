@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatore Decrementale</title>
+</head>
+<body>
+
+<div id="counter" style="font-size: 24px;"></div>
+<div id="countUpDiv" style="display: none; font-size: 24px;">Contatore in aumento: <span id="countUp">0</span></div>
+
+<script>
+    // Contatore decrementale da 10 a 0
+    let countDown = 10;
+    const counterElement = document.getElementById('counter');
+    
+    const countDownInterval = setInterval(() => {
+        counterElement.textContent = `Conto alla rovescia: ${countDown}`;
+        
+        if (countDown === 0) {
+            clearInterval(countDownInterval);
+            startCountUp();
+        }
+        
+        countDown--;
+    }, 1000);
+    
+    // Funzione per avviare il conteggio da 0 a 10
+    function startCountUp() {
+        let countUp = 0;
+        document.getElementById('countUpDiv').style.display = 'block';
+        const countUpElement = document.getElementById('countUp');
+        
+        const countUpInterval = setInterval(() => {
+            countUpElement.textContent = countUp;
+            
+            if (countUp === 10) {
+                clearInterval(countUpInterval);
+            }
+            
+            countUp++;
+        }, 1000);
+    }
+</script>
+
+</body>
+</html>
