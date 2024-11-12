@@ -1,0 +1,18 @@
+import requests
+
+# URL del progetto Overleaf che desideri scaricare (devi avere il permesso)
+project_url = "http://overleaf.com/project/672b2b06de9464db91bec95/download/zip"
+
+# Token di accesso, ottenuto tramite i tuoi credenziali di Overleaf
+access_token = "YOUR_ACCESS_TOKEN"
+
+# Richiesta per scaricare il file ZIP
+response = requests.get(project_url, headers={"Authorization": f"Bearer {access_token}"})
+
+# Controllo della risposta e salvataggio del file
+if response.status_code == 200:
+    with open("overleaf_project.zip", "wb") as file:
+        file.write(response.content)
+    print("Il progetto è stato scaricato con successo!")
+else:
+    print("Errore durante il download del progetto:", response.status_code)
