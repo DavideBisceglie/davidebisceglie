@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolo Età</title>
+</head>
+<body>
+    <h1>Benvenuto!</h1>
+    <p>Inserisci il tuo nome e la tua data di nascita:</p>
+
+    <form id="userForm">
+        <label for="name">Nome:</label>
+        <input type="text" id="name" required>
+        <br><br>
+
+        <label for="birthdate">Data:</label>
+        <input type="date" id="birthdate" required>
+        <br><br>
+
+        <button type="submit">Calcola</button>
+    </form>
+
+    <h2 id="result"></h2>
+
+    <script>
+        document.getElementById("userForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Previene il ricaricamento della pagina
+
+            const name = document.getElementById("name").value;
+            const birthdate = new Date(document.getElementById("birthdate").value);
+
+            // Controllo se la data di nascita è valida
+            if (isNaN(birthdate.getTime())) {
+                alert("Per favore, inserisci una data valida!");
+                return;
+            }
+
+            const today = new Date();
+            const diffTime = today - birthdate; // Differenza in millisecondi
+
+            const daysAlive = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            const hoursAlive = Math.floor(diffTime / (1000 * 60 * 60));
+
+            const result = `Ciao ${name}, sei in vita da ${daysAlive} giorni e ${hoursAlive} ore.`;
+            document.getElementById("result").textContent = result;
+        });
+    </script>
+</body>
+</html>
+
