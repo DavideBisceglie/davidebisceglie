@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gioco della Morra Cinese</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 10px 20px;
+        }
+        img {
+            width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gioco della Morra Cinese</h1>
+    <div>
+        <button onclick="gioca('sasso')">Sasso</button>
+        <button onclick="gioca('carta')">Carta</button>
+        <button onclick="gioca('forbici')">Forbici</button>
+    </div>
+
+    <div id="risultato"></div>
+    <div id="immagineComputer"></div>
+    <table>
+        <thead>
+            <tr>
+                <th>Vittorie</th>
+                <th>Sconfitte</th>
+                <th>Pareggi</th>
+                <th>Punteggio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="vittorie">0</td>
+                <td id="sconfitte">0</td>
+                <td id="pareggi">0</td>
+                <td id="punteggio">0</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        const scelte = ['sasso', 'carta', 'forbici'];
+        let vittorie = 0;
+        let sconfitte = 0;
+        let pareggi = 0;
+        let punteggio = 0;
+
+        function sceltaCasuale() {
+            return scelte[Math.floor(Math.random() * scelte.length)];
+        }
+
+        function determinareVincitore(sceltaGiocatore, sceltaComputer) {
+            if (sceltaGiocatore === sceltaComputer) {
+                return 'Pareggio!';
+            } else if ((sceltaGiocatore === 'sasso' && sceltaComputer === 'forbici') ||
+                       (sceltaGiocatore === 'carta' && sceltaComputer === 'sasso') ||
+                       (sceltaGiocatore === 'forbici' && sceltaComputer === 'carta')) {
+                return 'Hai vinto!';
+            } else {
+                return 'Hai perso!';
+            }
+        }
+
+        function aggiornaTabellino(risultato) {
+            if (risultato === 'Hai vinto!') {
+                vittorie++;
+                punteggio += 100;
+            } else if (risultato === 'Hai perso!') {
+                sconfitte++;
+                punteggio += 0;
+            } else {
+                pareggi++;
+                punteggio += 50;
+            }
+            document.getElementById('vittorie').textContent = vittorie;
+            document.getElementById('sconfitte').textContent = sconfitte;
+            document.getElementById('pareggi').textContent = pareggi;
+            document.getElementById('punteggio').textContent = punteggio;
+        }
+
+        function mostraImmagine(scelta) {
+            const imgSrc = scelta + '.png';
+            document.getElementById('immagineComputer').innerHTML = `<img src="${imgSrc}" alt="${scelta}">`;
+        }
+
+        function startCounter() {
+            let count = 3.00;
+            const counter = setInterval(() => {
+                count -= 0.01;
+                if (count <= 0) {
+                    clearInterval(counter);
+                }
+                document.getElementById('risultato').textContent = count.toFixed(2);
+            }, 10);
+        }
+
+        function gioca(sceltaGiocatore) {
+            startCounter();
+            setTimeout(() => {
+                const sceltaComputer = sceltaCasuale();
+                const risultato = determinareVincitore(sceltaGiocatore, sceltaComputer);
+                document.getElementById('risultato').innerHTML = `
+                    <p>Giocatore: ${sceltaGiocatore}</p>
+                    <p>Computer: ${sceltaComputer}</p>
+                    <h2>${risultato}</h2>
+
+                    function determinareVincitore(sceltaGiocatore, sceltaComputer) {
+
+            if (sceltaGiocatore === sceltaComputer) {
+                return 'Pareggio!';
+            } else if ((sceltaGiocatore === 'sasso' && sceltaComputer === 'forbici') 
+                       (sceltaGiocatore === 'carta' && sceltaComputer === 'sasso') 
+                       (sceltaGiocatore === 'forbici' && sceltaComputer === 'carta')) {
+                return 'Hai vinto!';
+            } else {
+                return 'Hai perso!';
+            }
+        }
+        
+    
+                `;
+                mostraImmagine(sceltaComputer);
+                aggiornaTabellino(risultato);
+            }, 3000); 
+        }
+    </script>
+</body>
+</html>
