@@ -1,0 +1,21 @@
+function getElement(array, index) {
+    // Controlla se l'indice è fuori dai limiti dell'array
+    if (index < 0 || index >= array.length) {
+        return "Indice non valido";
+    }
+    // Restituisce l'elemento corrispondente
+    return array[index];
+}
+
+// Esempio di array
+const morra = ["Carta", "Forbici", "Sasso"];
+
+// Primo elemento
+console.log(getElement(morra, 0)); // Output: "Carta"
+
+// Ultimo elemento
+console.log(getElement(morra, morra.length - 1)); // Output: "Sasso"
+
+// Elemento fuori dai limiti
+console.log(getElement(morra, 5)); // Output: "Indice non valido"
+console.log(getElement(morra, -1)); // Output: "Indice non valido"
