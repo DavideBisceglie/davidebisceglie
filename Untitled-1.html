@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisi Numerica con Array</title>
+</head>
+<body>
+
+    <h1>Analisi Numerica con Array</h1>
+    <p>Lista generata:</p>
+    <p id="out1"></p>
+    <script>
+     
+        let numeri = [];
+
+        for (let i = 0; i < 1000; i++) {
+            let numeroCasuale = Math.floor(Math.random() * 100); 
+            numeri.push(numeroCasuale);
+        }
+
+
+        document.getElementById("out1").innerHTML = numeri.join(", ");
+
+
+        function isPrime(n) {
+            if (n < 2) return false; 
+            for (let i = 2; i <= Math.sqrt(n); i++) {
+                if (n % i === 0) return false;
+            }
+            return true;
+        }
+
+        console.log(isPrime(11)); 
+
+    </script>
+
+</body>
+</html>
