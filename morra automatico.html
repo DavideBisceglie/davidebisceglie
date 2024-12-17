@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gioco della Morra Cinese</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gioco della Morra Cinese - Simulazione</h1>
+    <div id="risultato"></div>
+    <table>
+        <thead>
+            <tr>
+                <th>Vittorie Computer 1</th>
+                <th>Vittorie Computer 2</th>
+                <th>Pareggi</th>
+                <th>Punteggio Totale</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="vittorie1">0</td>
+                <td id="vittorie2">0</td>
+                <td id="pareggi">0</td>
+                <td id="punteggio">0</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        const scelte = ['sasso', 'carta', 'forbici'];
+        let vittorie1 = 0;
+        let vittorie2 = 0;
+        let pareggi = 0;
+        let punteggio = 0;
+
+        function sceltaCasuale() {
+            return scelte[Math.floor(Math.random() * scelte.length)];
+        }
+
+        function determinareVincitore(scelta1, scelta2) {
+            if (scelta1 === scelta2) {
+                return 'Pareggio';
+            } else if (
+                (scelta1 === 'sasso' && scelta2 === 'forbici') ||
+                (scelta1 === 'carta' && scelta2 === 'sasso') ||
+                (scelta1 === 'forbici' && scelta2 === 'carta')
+            ) {
+                return 'Computer 1';
+            } else {
+                return 'Computer 2';
+            }
+        }
+
+        function aggiornaTabellino(risultato) {
+            if (risultato === 'Computer 1') {
+                vittorie1++;
+                punteggio += 100;
+            } else if (risultato === 'Computer 2') {
+                vittorie2++;
+                punteggio += 100;
+            } else {
+                pareggi++;
+                punteggio += 50;
+            }
+            document.getElementById('vittorie1').textContent = vittorie1;
+            document.getElementById('vittorie2').textContent = vittorie2;
+            document.getElementById('pareggi').textContent = pareggi;
+            document.getElementById('punteggio').textContent = punteggio;
+        }
+
+        function giocaAutomaticamente(rounds) {
+            for (let i = 0; i < rounds; i++) {
+                const scelta1 = sceltaCasuale();
+                const scelta2 = sceltaCasuale();
+                const risultato = determinareVincitore(scelta1, scelta2);
+                aggiornaTabellino(risultato);
+            }
+            document.getElementById('risultato').innerHTML = `
+                <h2>Simulazione completata!</h2>
+                <p>Totale round: ${rounds}</p>
+            `;
+        }
+
+        // Avvia la simulazione con 1000 round
+        giocaAutomaticamente(1000);
+    </script>
+</body>
+</html>
