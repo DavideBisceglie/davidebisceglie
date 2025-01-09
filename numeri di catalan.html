@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numeri di Catalan</title>
+    <link rel="icon" href="https://example.com/icon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(45deg, #007acc, #005f99);
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+            font-weight: 700;
+        }
+        header p {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+        nav {
+            background: #333;
+            padding: 15px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav li {
+            margin: 0 20px;
+            position: relative;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #007acc;
+        }
+        nav ul ul {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #444;
+            display: none;
+            flex-direction: column;
+            min-width: 200px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+        nav ul ul li {
+            margin: 0;
+        }
+        nav ul ul a {
+            padding: 10px;
+            font-size: 1em;
+        }
+        nav li:hover > ul {
+            display: flex;
+        }
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: 30px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        section {
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #007acc;
+            font-size: 2em;
+            margin-top: 0;
+        }
+        p {
+            font-size: 1.1em;
+        }
+        ul {
+            margin: 15px 0;
+            padding: 0 20px;
+        }
+        ul li {
+            margin-bottom: 10px;
+        }
+        code, pre {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            display: block;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .image-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+            font-size: 0.9em;
+        }
+        .flags {
+            display: flex;
+            align-items: center;
+        }
+        .flags img {
+            width: 20px;
+            height: 15px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Numeri di Catalan</h1>
+        <p>Un viaggio nella combinatoria e nelle sue applicazioni.</p>
+    </header>
+    <main>
+        <section id="intro">
+            <h2>Che cosa sono i Numeri di Catalan?</h2>
+            <p>
+                <span class="flags"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/800px-Flag_of_Italy.svg.png" alt="Italia"> I numeri di Catalan sono una sequenza matematica fondamentale nella combinatoria, utilizzata per contare strutture discrete con una natura ricorsiva.</span><br>
+                <span class="flags"><img src="england.png" alt="UK"> Catalan numbers are a fundamental mathematical sequence in combinatorics, used to count discrete structures with a recursive nature.</span>
+            </p>
+            <p>
+                <span class="flags"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/800px-Flag_of_Italy.svg.png" alt="Italia"> Sono definiti dalla formula:</span><br>
+                <span class="flags"><img src="england.png" alt="UK"> They are defined by the formula:</span>
+            </p>
+            <pre><code>C<sub>n</sub> = (2n)! / [(n+1)! * n!]</code></pre>
+            <div class="image-container">
+                <img src="albero.png" alt="Rappresentazione di un albero binario">
+                <p>Figura 1: Esempio di albero binario, una delle applicazioni dei numeri di Catalan.</p>
+                <p>Figure 1: Example of a binary tree, one of the applications of Catalan numbers.</p>
+            </div>
+            <p>Ecco i primi valori della sequenza:</p>
+            <ul>
+                <li>C<sub>0</sub> = 1</li>
+                <li>C<sub>1</sub> = 1</li>
+                <li>C<sub>2</sub> = 2</li>
+                <li>C<sub>3</sub> = 5</li>
+                <li>C<sub>4</sub> = 14</li>
+                <li>C<sub>5</sub> = 42</li>
+            </ul>
+        </section>
+        <section id="applicazioni">
+            <h2>Applicazioni Combinatorie</h2>
+            <p>
+                <span class="flags"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/800px-Flag_of_Italy.svg.png" alt="Italia"> I numeri di Catalan sono sorprendentemente versatili e compaiono in numerosi contesti combinatori:</span><br>
+                <span class="flags"><img src="england.png" alt="UK"> Catalan numbers are surprisingly versatile and appear in numerous combinatorial contexts:</span>
+            </p>
+            <ul>
+                <li><strong>Alberi binari:</strong> Per contare il numero di alberi binari di ricerca con <code>n</code> nodi.</li>
+                <li><strong>Parentetizzazioni:</strong> Per determinare il numero di modi validi di aggiungere parentesi a espressioni con <code>n+1</code> fattori.</li>
+                <li><strong>Triangolazioni:</strong> Per dividere un poligono convesso con <code>n+2</code> lati in triangoli.</li>
+                <li><strong>Cammini nella griglia:</strong> Per contare i cammini dalla posizione <code>(0, 0)</code> alla posizione <code>(n, n)</code> senza superare la diagonale principale.</li>
+            </ul>
+        </section>
+        <section id="javascript">
+            <h2>Implementazione in JavaScript</h2>
+            <p>
+                <span class="flags"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/800px-Flag_of_Italy.svg.png" alt="Italia"> Ecco un esempio di come calcolare il <code>n</code>-esimo numero di Catalan utilizzando una funzione JavaScript:</span><br>
+                <span class="flags"><img src="england.png" alt="UK"> Here's an example of how to calculate the <code>n</code>-th Catalan number using a JavaScript function:</span>
+            </p>
+            <pre><code>function catalanNumber(n) {
+    const factorial = (num) => {
+        return num <= 1 ? 1 : num * factorial(num - 1);
+    };
+    return factorial(2 * n) / (factorial(n + 1) * factorial(n));
+}
+
+// Esempio
+console.log(catalanNumber(5)); // Output: 42</code></pre>
+        </section>
+        <section id="visualizzazioni">
+            <h2>Visualizzazioni</h2>
+            <p>
+                <span class="flags"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/800px-Flag_of_Italy.svg.png" alt="Italia"> I numeri di Catalan possono essere rappresentati graficamente in vari modi:</span><br>
+                <span class="flags"><img src="england.png" alt="UK"> Catalan numbers can be represented graphically in various ways:</span>
+            </p>
+            <ul>
+                <li><strong>Alberi binari:</strong> Diagrammi che mostrano le configurazioni possibili. </li>
+                <li><strong>Griglie:</strong> Cammini che si mantengono sotto la diagonale principale.</li>
+                <li><strong>Parentetizzazioni:</strong> Diagrammi ad arco per rappresentare le combinazioni valide.</li>
+            </ul>
+            <div class="image-container">
+                <img src="griglia.png" alt="Griglia dei cammini">
+                <p>Figura 2: Esempio di un cammino nella griglia utilizzando i numeri di Catalan.</p>
+                <p>Figure 2: Example of a path in the grid using Catalan numbers.</p>
+            </div>
+        </section>
+        <section id="risorse">
+            <h2>Risorse</h2>
+            <p>
+                <span class="flags"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/800px-Flag_of_Italy.svg.png" alt="Italia"> Ecco alcuni link utili per approfondire i numeri di Catalan:</span><br>
+                <span class="flags"><img src="england.png" alt="UK"> Here are some useful links to learn more about Catalan numbers:</span>
+            </p>
+            <ul>
+                <li><a href="https://it.wikipedia.org/wiki/Numero_di_Catalan" target="_blank">Wikipedia - Numero di Catalan (Italiano)</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Catalan_number" target="_blank">Wikipedia - Catalan Number (English)</a></li>
+                <li><a href="https://mathworld.wolfram.com/CatalanNumber.html" target="_blank">MathWorld - Catalan Number</a></li>
+                <li><a href="https://www.khanacademy.org/math/precalculus/x2f8e7f83f7b3c22c/combinatorics/x2f8e7f83f7b3c22c:combinations/a/combinations-review" target="_blank">Khan Academy - Combinatorics (incluso numeri di Catalan)</a></li>
+            </ul>
+        </section>
+        
+    </main>
+    <footer>
+        <p>Creato da Davide Bisceglie. Tutti i diritti riservati &copy; 2025.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navItems = document.querySelectorAll('nav ul li');
+            navItems.forEach(item => {
+                item.addEventListener('mouseover', () => {
+                    const submenu = item.querySelector('ul');
+                    if (submenu) submenu.style.display = 'flex';
+                });
+                item.addEventListener('mouseout', () => {
+                    const submenu = item.querySelector('ul');
+                    if (submenu) submenu.style.display = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
