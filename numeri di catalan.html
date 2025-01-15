@@ -191,14 +191,21 @@
                 <span class="flags"><img src="england.png" alt="UK"> Here's an example of how to calculate the <code>n</code>-th Catalan number using a JavaScript function:</span>
             </p>
             <pre><code>function catalanNumber(n) {
-    const factorial = (num) => {
-        return num <= 1 ? 1 : num * factorial(num - 1);
-    };
-    return factorial(2 * n) / (factorial(n + 1) * factorial(n));
-}
-
-// Esempio
-console.log(catalanNumber(5)); // Output: 42</code></pre>
+                const factorial = (num) => {
+                    return num <= 1 ? 1 : num * factorial(num - 1);
+                };
+                return factorial(2 * n) / (factorial(n + 1) * factorial(n));
+            }
+        
+            // Esempio
+            console.log(catalanNumber(5)); // Output: 42</code></pre>
+            <p>
+                <span class="flags"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/800px-Flag_of_Italy.svg.png" alt="Italia"> Inserisci un valore massimo per generare i numeri di Catalan fino a quel limite.</span><br>
+                <span class="flags"><img src="england.png" alt="UK"> Enter a maximum value to generate Catalan numbers up to that limit.</span>
+            </p>
+            <input type="number" id="catalanLimit" min="0" placeholder="Inserisci un numero...">
+            <button id="generateButton">Genera</button>
+            <ul id="catalanList"></ul>
         </section>
         <section id="visualizzazioni">
             <h2>Visualizzazioni</h2>
@@ -228,27 +235,46 @@ console.log(catalanNumber(5)); // Output: 42</code></pre>
                 <li><a href="https://en.wikipedia.org/wiki/Catalan_number" target="_blank">Wikipedia - Catalan Number (English)</a></li>
                 <li><a href="https://mathworld.wolfram.com/CatalanNumber.html" target="_blank">MathWorld - Catalan Number</a></li>
                 <li><a href="https://www.khanacademy.org/math/precalculus/x2f8e7f83f7b3c22c/combinatorics/x2f8e7f83f7b3c22c:combinations/a/combinations-review" target="_blank">Khan Academy - Combinatorics (incluso numeri di Catalan)</a></li>
+                <li><a href="https://www.youtube.com/watch?v=fczN0BCx0xs&t=2s" target="_blank">Video YouTube (incluso numeri di Catalan)</a></li>
             </ul>
         </section>
-        
-    </main>
-    <footer>
-        <p>Creato da Davide Bisceglie e Federico Tridentino. Tutti i diritti riservati &copy; 2025.</p>
-    </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const navItems = document.querySelectorAll('nav ul li');
-            navItems.forEach(item => {
-                item.addEventListener('mouseover', () => {
-                    const submenu = item.querySelector('ul');
-                    if (submenu) submenu.style.display = 'flex';
+        <footer>
+            <p>Creato da Davide Bisceglie e Federico Tridentino. Tutti i diritti riservati &copy; 2025.</p>
+        </footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const navItems = document.querySelectorAll('nav ul li');
+                navItems.forEach(item => {
+                    item.addEventListener('mouseover', () => {
+                        const submenu = item.querySelector('ul');
+                        if (submenu) submenu.style.display = 'flex';
+                    });
+                    item.addEventListener('mouseout', () => {
+                        const submenu = item.querySelector('ul');
+                        if (submenu) submenu.style.display = 'none';
+                    });
                 });
-                item.addEventListener('mouseout', () => {
-                    const submenu = item.querySelector('ul');
-                    if (submenu) submenu.style.display = 'none';
+        
+                document.getElementById('generateButton').addEventListener('click', () => {
+                    const limit = parseInt(document.getElementById('catalanLimit').value);
+                    const list = document.getElementById('catalanList');
+                    list.innerHTML = '';
+        
+                    if (isNaN(limit) || limit < 0) {
+                        list.innerHTML = '<li>Per favore, inserisci un numero valido.</li>';
+                        return;
+                    }
+        
+                    const catalanNumbers = [];
+                    const factorial = (n) => n <= 1 ? 1 : n * factorial(n - 1);
+        
+                    for (let i = 0; i <= limit; i++) {
+                        const catalan = factorial(2 * i) / (factorial(i + 1) * factorial(i));
+                        catalanNumbers.push(catalan);
+                        list.innerHTML += `<li>C<sub>${i}</sub> = ${catalan}</li>`;
+                    }
                 });
             });
-        });
-    </script>
-</body>
-</html>
+        </script>
+        </body>
+        </html>
