@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ristorante Hotel - Capolavoro Unico</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #34495e;
+      padding: 10px;
+      text-align: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      margin: 0 15px;
+      color: #f1c40f;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      display: none;
+      padding-top: 70px; 
+    }
+    .active-page {
+      display: block;
+    }
+    .container {
+      padding: 50px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    h1, h2, h3 {
+      color: #f1c40f;
+    }
+
+    /* Contenuto invariato */
+   
+    .sponsor {
+      margin-top: 20px;
+      font-size: 2em; /* <-- Aumentato da 1.5em a 2em */
+      background-color: #34749e;
+      padding: 15px;
+      display: inline-block;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .gallery img {
+      width: 300px;
+      height: 200px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+      margin: 10px;
+    }
+    .sponsor + .gallery img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  
+    .menu-title {
+      font-size: 2.5em;
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+    .collapsible {
+      background-color: #34495e;
+      color: #ecf0f1;
+      cursor: pointer;
+      padding: 18px;
+      width: 90%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 1.5em;
+      margin: 15px auto;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+      transition: background-color 0.3s ease;
+    }
+    .collapsible:hover, .collapsible.active {
+      background-color: #3d5a73;
+    }
+    .content {
+      padding: 0 18px;
+      display: none;
+      overflow: hidden;
+      background-color: #34495e;
+      width: 90%;
+      margin: auto;
+      text-align: left;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
+    }
+    .meal-section {
+      padding: 15px;
+    }
+    .meal-section ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .meal-section li {
+      margin: 5px 0;
+      font-size: 1.1em;
+    }
+    .learn-more {
+      margin-top: 10px;
+      display: inline-block;
+      background-color: #f1c40f;
+      color: #2c3e50;
+      padding: 8px 16px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .summary {
+      margin-top: 40px;
+      font-size: 1.3em;
+      font-weight: 700;
+    }
+    .back-button {
+      font-size: 1.2em;
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      background-color: #f1c40f;
+      color: #2c3e50;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 20px auto;
+      display: block;
+    }
+
+    .detail-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+    .detail-container p {
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    .welcome {
+      color: #f1c40f;
+      font-size: 2.8em;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" onclick="showPage('home')">Home</a>
+    <a href="#" onclick="showPage('menu')">Menu</a>
+  </nav>
+  
+
+  <section id="home" class="page active-page">
+    <div class="container">
+        <div class="welcome">Siamo lieti di darvi il benvenuto all'Hotel Villa del Golfo</div>
+        <div class="sponsor">Since 1967, Napoli</div>
+        <div class="gallery">
+            <img src="https://davidebisceglie.github.io/davidebisceglie/logo.jpg" alt="Logo">
+        </div>
+    </div>
+    <div id="chi-siamo" class="container">
+        <h2>Chi Siamo</h2>
+        <p>Immerso nel cuore di Napoli, Villa del Golfo è un elegante rifugio affacciato sul mare, dove charme e comfort si incontrano per offrire un’esperienza indimenticabile. Con camere raffinate, un’accoglienza calorosa e una vista mozzafiato sul Golfo, il nostro hotel è il luogo ideale per chi desidera scoprire la bellezza autentica della città, tra storia, cultura e relax. Che si tratti di un soggiorno romantico, di un viaggio d'affari o di una vacanza in famiglia, presso Villa del Golfo troverete un’ospitalità senza pari, nel cuore della meravigliosa Napoli.</p>
+    </div>
+    <div id="foto" class="container">
+        <h2>Foto</h2>
+        <p>Scopri le nostre specialità e il nostro ristorante.</p>
+        <div class="gallery">
+            <img src="https://davidebisceglie.github.io/davidebisceglie/piatto1.jpg" alt="Piatto 1">
+            <img src="https://davidebisceglie.github.io/davidebisceglie/piatto2.jpg" alt="Piatto 2">
+            <img src="https://davidebisceglie.github.io/davidebisceglie/ristorante.jpg" alt="Interno Ristorante">
+        </div>
+    </div>
+    <div id="location" class="container">
+        <h2>Location</h2>
+        <p>Ci trovi in <strong>via Maniscalchi 69</strong>, nel cuore di Napoli, una posizione strategica che ti permette di vivere la città al meglio. Soggiornando da noi, sarai a pochi passi dalle meraviglie storiche, dai sapori autentici della tradizione e dalle atmosfere vibranti che rendono Napoli unica. Un punto di partenza ideale per esplorare la città e goderti un’esperienza indimenticabile.</p>
+        <div class="gallery">
+            <img src="https://davidebisceglie.github.io/davidebisceglie/napoli1.jpg" alt="Napoli 1">
+            <img src="https://davidebisceglie.github.io/davidebisceglie/napoli2.jpg" alt="Napoli 2">
+            <img src="https://davidebisceglie.github.io/davidebisceglie/hotel.jpg" alt="Hotel">
+        </div>
+    </div>
+    <div id="camere" class="container">
+        <h2>Camere</h2>
+        <p>Le camere del nostro hotel offrono il massimo del comfort e dell’eleganza, pensate per soddisfare ogni tipo di ospite. Dalle accoglienti camere singole, perfette per chi viaggia da solo, alle spaziose suite, ideali per chi cerca lusso e relax.
+            Per le famiglie, disponiamo di camere triple, quadruple e family, con ampi spazi e soluzioni su misura. Gli ospiti business possono scegliere le nostre camere executive, dotate di scrivania e servizi dedicati.
+            Tutte le camere sono arredate con stile, offrono connessione Wi-Fi gratuita, TV satellitare, minibar e bagno privato. Alcune vantano una splendida vista panoramica sulla città o sul mare, per rendere il soggiorno ancora più speciale.
+            Prenota la tua camera e vivi un’esperienza indimenticabile!
+             </p>
+        <div class="gallery">
+            <img src="https://davidebisceglie.github.io/davidebisceglie/camera1.jpg" alt="Camera 1">
+            <img src="https://davidebisceglie.github.io/davidebisceglie/camera2.jpg" alt="Camera 2">
+            <img src="https://davidebisceglie.github.io/davidebisceglie/camera3.jpg" alt="Camera 3">
+        </div>
+    </div>
+    <div id="servizi" class="container">
+        <h2>Servizi</h2>
+        <p>Con noi, Napoli non è solo una destinazione, ma un'esperienza da vivere a 360°. Regalati un’avventura indimenticabile con le nostre esclusive attività all’aperto: salpa per una suggestiva <strong>gita in barca nel Golfo di Napoli</strong>, esplorando le meravigliose isole di Capri e Ischia, oppure <strong>immergiti nelle acque cristalline per scoprire i fondali di Baia e Posillipo</strong> con immersioni e snorkeling mozzafiato. Se ami la natura, potrai affrontare <strong>un’escursione sul Vesuvio o percorrere sentieri panoramici nei parchi naturali della Campania</strong>. Per i buongustai, organizziamo <strong>degustazioni enogastronomiche nelle migliori cantine della regione</strong>, dove potrai assaporare vini e prodotti tipici. Ogni esperienza è pensata per farti vivere Napoli in modo autentico</p>
+        <div class="gallery">
+            <img src="https://davidebisceglie.github.io/davidebisceglie/servizi1.jpg" alt="Servizi 1">
+            <img src="https://davidebisceglie.github.io/davidebisceglie/servizi2.jpg" alt="Servizi 2">
+            <img src="https://davidebisceglie.github.io/davidebisceglie/servizi3.jpg" alt="Servizi 3">
+        </div>
+    </div>
+    <div id="pet friendly" class="container">
+        <h2>Pet Friendly</h2>
+        <p>Nel nostro hotel, gli animali domestici sono ospiti speciali. Offriamo un’accoglienza pet-friendly con spazi dedicati, comfort su misura e tutto il necessario per rendere il soggiorno piacevole anche per loro. Porta con te il tuo fedele amico e vivi Napoli senza rinunce!</p>
+        <div class="gallery">
+            <img src="https://davidebisceglie.github.io/davidebisceglie/pet1.jpg" alt="Pet 1">
+            <img src="https://davidebisceglie.github.io/davidebisceglie/pet4.jpg" alt="Pet 2">
+            <img src="https://davidebisceglie.github.io/davidebisceglie/pet2.jpg" alt="Pet 3">
+        </div>
+    </div>
+    <div id="spa" class="container">
+        <h2>Servizio SPA</h2>
+        <p>Rilassati e rigenera corpo e mente nella nostra esclusiva SPA, dove le benefiche acque termali della zona ti avvolgeranno in un’esperienza di puro benessere. Grazie alle proprietà curative delle sorgenti naturali, potrai godere di trattamenti termali, bagni rilassanti e percorsi benessere pensati per il massimo del relax. Un'oasi di tranquillità nel cuore di Napoli, dove la natura incontra il lusso</p>
+        <div class="gallery">
+            <img src="https://davidebisceglie.github.io/davidebisceglie/spa1.jpg" alt="spa 1">
+            <img src="https://davidebisceglie.github.io/davidebisceglie/spa2.jpg" alt="spa 2">
+            <img src="https://davidebisceglie.github.io/davidebisceglie/spa3.jpg" alt="spa 3">
+        </div>
+    </div>
+  </section>
+  
+
+  <section id="menu" class="page">
+    <div class="container">
+      <div class="menu-title">Il Nostro Menu Dettagliato</div>
+      
+
+      <button class="collapsible">Colazione - 320 kcal</button>
+      <div class="content">
+        <div class="meal-section">
+          <h3>Yogurt artigianale con miele e granella di noci</h3>
+          <ul>
+            <li>Yogurt bianco intero: 150g (100 kcal)</li>
+            <li>Miele di Sorrento: 10g (30 kcal)</li>
+            <li>Noci sgusciate: 10g (70 kcal)</li>
+          </ul>
+          <h3>Succo d’arancia rossa di Sicilia</h3>
+          <ul>
+            <li8>Arance rosse fresche: 250ml (120 kcal)</li>
+          </ul>
+          <img src="https://davidebisceglie.github.io/davidebisceglie/colazione.jpg" alt="Colazione">
+          <a class="learn-more" href="#" onclick="showPage('colazione')">Scopri di più</a>
+        </div>
+      </div>
+      
+
+      <button class="collapsible">Pranzo - 895 kcal</button>
+      <div class="content">
+        <div class="meal-section">
+          <h3>Scialatielli integrali con pomodorini, olive e capperi</h3>
+          <ul>
+            <li>Scialatielli integrali: 100g (350 kcal)</li>
+            <li>Pomodorini del piennolo: 100g (20 kcal)</li>
+            <li>Olive nere: 15g (25 kcal)</li>
+            <li>Olio extravergine di oliva: 10g (90 kcal)</li>
+          </ul>
+          <h3>Spigola all’acqua pazza con scarola ripassata</h3>
+          <ul>
+            <li>Spigola (filetto 200g): (240 kcal)</li>
+            <li>Pomodorini del piennolo: 80g (16 kcal)</li>
+            <li>Olio extravergine di oliva: 10g (90 kcal)</li>
+            <li>Vino bianco: 30ml (25 kcal)</li>
+            <li>Scarola ripassata: 150g (35 kcal)</li>
+          </ul>
+          <img src="https://davidebisceglie.github.io/davidebisceglie/pranzo.jpg" alt="Pranzo">
+          <a class="learn-more" href="#" onclick="showPage('pranzo')">Scopri di più</a>
+        </div>
+      </div>
+      
+
+      <button class="collapsible">Merenda - 160 kcal</button>
+      <div class="content">
+        <div class="meal-section">
+          <h3>Granita di limone con mandorle</h3>
+          <ul>
+            <li>Succo di limone di Sorrento: 100ml (40 kcal)</li>
+            <li>Zucchero di canna: 15g (60 kcal)</li>
+            <li>Mandorle tritate: 10g (60 kcal)</li>
+          </ul>
+          <img src="https://davidebisceglie.github.io/davidebisceglie/merenda.jpg" alt="Merenda">
+          <a class="learn-more" href="#" onclick="showPage('merenda')">Scopri di più</a>
+        </div>
+      </div>
+      
+
+      <button class="collapsible">Cena - 1140 kcal</button>
+      <div class="content">
+        <div class="meal-section">
+          <h3>Paccheri con ragù di pesce spada e pomodorini</h3>
+          <ul>
+            <li>Paccheri: 100g (350 kcal)</li>
+            <li>Pesce spada: 150g (165 kcal)</li>
+            <li>Pomodorini del piennolo: 100g (20 kcal)</li>
+            <li>Olio extravergine di oliva: 10g (90 kcal)</li>
+          </ul>
+          
+          <h3>Polpo alla luciana con pane tostato</h3>
+          <ul>
+            <li>Polpo fresco: 300g (300 kcal)</li>
+            <li>Pomodorini del piennolo: 100g (20 kcal)</li>
+            <li>Olive nere: 15g (25 kcal)</li>
+            <li>Olio extravergine di oliva: 10g (90 kcal)</li>
+            <li>Pane di semola tostato: 30g (80 kcal)</li>
+          </ul>
+        
+          <!-- IMPORTANTE: forzare display:block per evitare che le immagini
+               e il bottone finiscano sulla stessa riga -->
+          <img src="https://davidebisceglie.github.io/davidebisceglie/cena.jpg" alt="Cena" style="display:block;">
+          <img src="https://davidebisceglie.github.io/davidebisceglie/cena2.jpg" alt="Cena2" style="display:block;">
+        
+          <!-- Il bottone adesso risulterà sotto l’ultima immagine,
+               allineato a sinistra come gli altri -->
+          <a class="learn-more" href="#" onclick="showPage('cena')">Scopri di più</a>
+        </div>        
+      
+      <div class="summary">
+        <p><strong>Totale giornaliero:</strong> circa 2600 kcal</p>
+        <p><strong>Prezzo medio:</strong> 65-70€</p>
+      </div>
+      
+      <button class="back-button" onclick="showPage('home')">Torna alla Home</button>
+    </div>
+  </section>
+
+  <section id="colazione" class="page">
+    <div class="detail-container">
+      <h1>Colazione</h1>
+      <p>
+        La colazione proposta si basa su uno yogurt artigianale, miele di Sorrento e noci, accompagnati da un succo d'arancia rossa. <br>
+        <strong>Perché questa scelta?</strong>
+        <br>
+        • Lo yogurt offre proteine e probiotici essenziali per la salute intestinale.<br>
+        • Il miele fornisce energia naturale senza eccessi di zuccheri raffinati.<br>
+        • Le noci apportano grassi buoni e antiossidanti per il benessere cardiovascolare.<br>
+        • L’arancia rossa garantisce una dose di vitamina C, fondamentale per il sistema immunitario.
+      </p>
+      <p>
+        <strong>Possibili controindicazioni:</strong><br>
+        Se si è intolleranti al lattosio o sensibili agli agrumi, si possono considerare alternative come yogurt senza lattosio o un succo di mela.
+      </p>
+      <button class="back-button" onclick="showPage('menu')">Torna al Menù</button>
+    </div>
+  </section>
+  
+
+  <section id="pranzo" class="page">
+    <div class="detail-container">
+      <h1>Pranzo</h1>
+      <p>
+        Il pranzo si compone di due portate: <br>
+        • <strong>Scialatielli integrali</strong> con pomodorini, olive e capperi, una fonte eccellente di carboidrati complessi e antiossidanti, arricchita dai grassi buoni dell’olio extravergine;<br>
+        • <strong>Spigola all’acqua pazza</strong> con scarola ripassata, una scelta leggera e proteica che apporta acidi grassi essenziali e vitamine.
+      </p>
+      <p>
+        <strong>Benefici salutistici:</strong><br>
+        La combinazione assicura un buon equilibrio energetico e nutrizionale, favorendo digestione e salute cardiovascolare.
+      </p>
+      <p>
+        <strong>Possibili controindicazioni:</strong><br>
+        Chi è allergico al pesce o ha specifiche intolleranze dovrà optare per porzioni ridotte o alternative.
+      </p>
+      <button class="back-button" onclick="showPage('menu')">Torna al Menù</button>
+    </div>
+  </section>
+  
+
+  <section id="merenda" class="page">
+    <div class="detail-container">
+      <h1>Merenda</h1>
+      <p>
+        La merenda proposta è una <strong>Granita di limone con mandorle</strong>. <br>
+        Questa scelta fornisce una pausa rinfrescante e leggera, con energia rapida derivante dallo zucchero naturale e vitamine del limone, mentre le mandorle apportano grassi buoni e micronutrienti.
+      </p>
+      <p>
+        <strong>Benefici salutistici:</strong><br>
+        Rinfrescante, idratante e ricca di vitamina C, ideale per stimolare il metabolismo nel pomeriggio.
+      </p>
+      <button class="back-button" onclick="showPage('menu')">Torna al Menù</button>
+    </div>
+  </section>
+  
+
+  <section id="cena" class="page">
+    <div class="detail-container">
+      <h1>Cena</h1>
+      <p>
+        La cena prevede due portate: <br>
+        • <strong>Paccheri con ragù di pesce spada</strong> che uniscono carboidrati e le proprietà salutari del pesce e degli ingredienti mediterranei;<br>
+        • <strong>Polpo alla luciana con pane tostato</strong> per un apporto proteico e di nutrienti essenziali, ideale per concludere il pasto in leggerezza.
+      </p>
+      <p>
+        <strong>Benefici salutistici:</strong><br>
+        Le ricette a base di pesce garantiscono omega-3 e proteine di alta qualità, mentre il pane tostato fornisce fibre e carboidrati complessi.
+      </p>
+      <p>
+        <strong>Possibili controindicazioni:</strong><br>
+        Chi ha allergie specifiche o necessita di un apporto calorico inferiore dovrà considerare alternative o ridurre le porzioni.
+      </p>
+      <button class="back-button" onclick="showPage('menu')">Torna al Menù</button>
+    </div>
+  </section>
+  
+
+  <script>
+
+    function showPage(pageId) {
+      var pages = document.getElementsByClassName('page');
+      for (var i = 0; i < pages.length; i++) {
+        pages[i].classList.remove('active-page');
+      }
+      document.getElementById(pageId).classList.add('active-page');
+      window.scrollTo(0, 0);
+    }
+    
+
+    var coll = document.getElementsByClassName("collapsible");
+    for (var i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        content.style.display = (content.style.display === "block") ? "none" : "block";
+      });
+    }
+  </script>
+</body>
+</html>
