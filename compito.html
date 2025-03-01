@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Form GET e POST</title>
+  <!-- Inclusione Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container my-5">
+    <h1 class="mb-4">Esempio di Form: GET e POST</h1>
+    <div class="row">
+      <!-- Form con Metodo GET -->
+      <div class="col-md-6">
+        <h3>Form con GET</h3>
+        <form id="formGet" method="GET">
+          <div class="mb-3">
+            <label for="nicknameGet" class="form-label">Nickname</label>
+            <input type="text" class="form-control" id="nicknameGet" name="nickname" required>
+          </div>
+          <div class="mb-3">
+            <label for="messageGet" class="form-label">Messaggio</label>
+            <textarea class="form-control" id="messageGet" name="message" rows="3" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Visibilità</label>
+            <div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="visibility" id="publicGet" value="pubblico" checked>
+                <label class="form-check-label" for="publicGet">Pubblico</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="visibility" id="privateGet" value="privato">
+                <label class="form-check-label" for="privateGet">Privato</label>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Invia GET</button>
+        </form>
+      </div>
+      <!-- Form con Metodo POST -->
+      <div class="col-md-6">
+        <h3>Form con POST</h3>
+        <form id="formPost" method="POST">
+          <div class="mb-3">
+            <label for="nicknamePost" class="form-label">Nickname</label>
+            <input type="text" class="form-control" id="nicknamePost" name="nickname" required>
+          </div>
+          <div class="mb-3">
+            <label for="messagePost" class="form-label">Messaggio</label>
+            <textarea class="form-control" id="messagePost" name="message" rows="3" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Visibilità</label>
+            <div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="visibility" id="publicPost" value="pubblico" checked>
+                <label class="form-check-label" for="publicPost">Pubblico</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="visibility" id="privatePost" value="privato">
+                <label class="form-check-label" for="privatePost">Privato</label>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-secondary">Invia POST</button>
+        </form>
+      </div>
+    </div>
+    
+    <hr>
+    <!-- Area di output dei dati inviati -->
+    <h2>Risultato della Submission</h2>
+    <div id="result"></div>
+    
+    <hr>
+    <!-- Spiegazione delle differenze -->
+    <h2>Differenze tra GET e POST</h2>
+    <ul>
+      <li><strong>GET:</strong> I dati vengono inviati tramite l'URL (query string). Questo significa che sono visibili nella barra degli indirizzi, possono essere memorizzati nella cronologia e sono ideali per richieste idempotenti (senza effetti collaterali). Tuttavia, c'è un limite di lunghezza e non è adatto per dati sensibili.</li>
+      <li><strong>POST:</strong> I dati vengono inviati nel corpo della richiesta, rendendoli meno visibili e più adatti per l'invio di dati sensibili o di grandi dimensioni. Le richieste POST non sono memorizzate nella cronologia e sono generalmente utilizzate per operazioni che modificano lo stato (ad esempio, l'invio di un nuovo post).</li>
+    </ul>
+  </div>
+  
+  <script>
+    // Funzione per visualizzare i dati inviati
+    function displayResult(method, dataObj) {
+      const resultDiv = document.getElementById('result');
+      const content = document.createElement('div');
+      content.className = 'mb-3 p-3 border';
+      content.innerHTML = `<h4>Dati inviati con ${method}</h4>
+                           <p><strong>Nickname:</strong> ${dataObj.nickname}</p>
+                           <p><strong>Messaggio:</strong> ${dataObj.message}</p>
+                           <p><strong>Visibilità:</strong> ${dataObj.visibility}</p>`;
+      resultDiv.appendChild(content);
+    }
+
+    // Gestione del form con metodo GET
+    document.getElementById('formGet').addEventListener('submit', function(e) {
+      e.preventDefault(); // impedisce il submit tradizionale
+      const formData = new FormData(this);
+      const dataObj = {
+        nickname: formData.get('nickname'),
+        message: formData.get('message'),
+        visibility: formData.get('visibility')
+      };
+      displayResult('GET', dataObj);
+    });
+
+    // Gestione del form con metodo POST
+    document.getElementById('formPost').addEventListener('submit', function(e) {
+      e.preventDefault(); // impedisce il submit tradizionale
+      const formData = new FormData(this);
+      const dataObj = {
+        nickname: formData.get('nickname'),
+        message: formData.get('message'),
+        visibility: formData.get('visibility')
+      };
+      displayResult('POST', dataObj);
+    });
+  </script>
+</body>
+</html>
