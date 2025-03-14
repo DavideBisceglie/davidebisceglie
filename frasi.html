@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generatore di Frasi Casuali</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Generatore di Frasi Casuali</h2>
+        <p id="randomSentence">Premi il pulsante per generare una frase casuale.</p>
+        <button onclick="generateSentence()">Genera Frase</button>
+    </div>
+    
+    <script>
+        const sentences = [
+            "La vita è un'avventura audace o niente.",
+            "Il successo è la somma di piccoli sforzi ripetuti giorno dopo giorno.",
+            "Non sognare la tua vita, vivi il tuo sogno.",
+            "Ogni giorno è una nuova opportunità per essere felice.",
+            "Fai ciò che ami e non lavorerai un solo giorno della tua vita."
+        ];
+
+        function generateSentence() {
+            const randomIndex = Math.floor(Math.random() * sentences.length);
+            document.getElementById("randomSentence").innerText = sentences[randomIndex];
+        }
+    </script>
+</body>
+</html>
