@@ -37,30 +37,17 @@
                 return;
             }
 
-            let numeriCasuali = []; 
-            let medieArray = [];   
-
             let output = "";
             for (let i = 0; i < 10000; i++) {
-                let num = (Math.random() * (max - min) + min).toFixed(2); 
-                numeriCasuali.push(parseFloat(num));
-
+                let num = (Math.random() * (max - min) + min).toFixed(2);
                 output += num + " ";
-
-       
+                
                 if ((i + 1) % 50 === 0) {
-                    let media = calcolaMedia(numeriCasuali.slice(i - 49, i + 1));
-                    medieArray.push(media);
-                    output += " | Media: " + media.toFixed(2) + "\n";
+                    output += "\n";
                 }
             }
 
             document.getElementById('output').textContent = output;
-        }
-
-        function calcolaMedia(array) {
-            let somma = array.reduce((acc, val) => acc + val, 0);
-            return somma / array.length;
         }
     </script>
 </body>
