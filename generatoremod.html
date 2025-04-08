@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generazione Numeri Casuali e Visualizzazione Grafico</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>Generazione Numeri Casuali con Visualizzazione Grafico</h1>
+  
+  <div>
+    <canvas id="myChart" width="400" height="200"></canvas>
+  </div>
+  
+  <script>
+    let ArrayNumeriCasuali = [];
+    let media = 0;
+    let contatore = 0;
+    let L1 = 0;
+    let L2 = 1;
+    let distanze = [];
+    let rapporti = [];
+
+    function generaNumeroCasuale() {
+      return Math.random();
+    }
+
+    function calcolaMedia(array) {
+      let somma = array.reduce((acc, val) => acc + val, 0);
+      return somma / array.length;
+    }
+
+    function calcolaDistanza(numero) {
+      let mediaRange = (L2 - L1) / 2;
+      return Math.abs(numero - mediaRange);
+    }
+
+    function aggiornaGrafico() {
+      chart.data.labels = ArrayNumeriCasuali.map((_, index) => index + 1);
+      chart.data.datasets[0].data = ArrayNumeriCasuali;
+      chart.update();
+    }
+
+    function gestisciNumeri() {
+      let numeroCasuale = generaNumeroCasuale();
+      ArrayNumeriCasuali.push(numeroCasuale);
+
+      if (ArrayNumeriCasuali.length > 1) {
+        let rapporto = numeroCasuale / ArrayNumeriCasuali[ArrayNumeriCasuali.length - 2];
+        rapporti.push(rapporto);
+      }
+
+      let distanza = calcolaDistanza(numeroCasuale);
+      distanze.push(distanza);
+
+      contatore++;
+      if (contatore >= 50) {
+        media = calcolaMedia(ArrayNumeriCasuali);
+        console.log(`Media ogni 50 numeri: ${media}`);
+        contatore = 0;
+      }
+
+      aggiornaGrafico();
+    }
+
+    let intervallo = setInterval(gestisciNumeri, 500);
+
+    setTimeout(() => {
+      clearInterval(intervallo);
+      console.log("Generazione numeri fermata.");
+    }, 10000);
+
+    let ctx = document.getElementById('myChart').getContext('2d');
+    let chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [{
+          label: 'Numeri Casuali',
+          data: [],
+          borderColor: 'rgb(75, 192, 192)',
+          fill: false,
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Indice'
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Valore del Numero Casuale'
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
