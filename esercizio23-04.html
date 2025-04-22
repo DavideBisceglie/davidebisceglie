@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulazione Fabbrica di Graffette</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    button { margin: 5px; padding: 10px; }
+    #output { margin-top: 20px; font-family: monospace; white-space: pre-line; }
+  </style>
+</head>
+<body>
+
+  <h1>Fabbrica di Graffette</h1>
+  <button onclick="factory.startProduction()">Avvia Produzione</button>
+  <button onclick="factory.stopProduction()">Ferma Produzione</button>
+  <button onclick="factory.resetProduction()">Reset Conteggio</button>
+  <button onclick="factory.boostProduction()">Potenziamento (x2 per 5s)</button>
+  <button onclick="mostraStato()">Mostra Stato</button>
+
+  <div id="output"></div>
+
+  <script>
+    class ClipProducer {
+      constructor(name, productionRatePerSecond) {
+        this.name = name;
+        this.productionRate = productionRatePerSecond;
+        this.totalClips = 0;
+        this.running = false;
+        this._intervalId = null;
+      }
+
+      startProduction() {
+        if (this.running) return;
+        this.running = true;
+        this._intervalId = setInterval(() => {
+          this.totalClips += this.productionRate;
+          log(`[${this.name}] Graffette totali: ${this.totalClips}`);
+        }, 1000);
+      }
+
+      stopProduction() {
+        if (!this.running) return;
+        clearInterval(this._intervalId);
+        this._intervalId = null;
+        this.running = false;
+        log(`[${this.name}] Produzione fermata.`);
+      }
+
+      resetProduction() {
+        this.totalClips = 0;
+        log(`[${this.name}] Conteggio graffette azzerato.`);
+      }
+
+      boostProduction(multiplier = 2, duration = 5000) {
+        if (!this.running) {
+          log(`[${this.name}] Produzione non attiva. Impossibile potenziare.`);
+          return;
+        }
+        const originalRate = this.productionRate;
+        this.productionRate *= multiplier;
+        log(`[${this.name}] Produzione potenziata x${multiplier} per ${duration / 1000} secondi!`);
+        setTimeout(() => {
+          this.productionRate = originalRate;
+          log(`[${this.name}] Produzione tornata al normale.`);
+        }, duration);
+      }
+
+      status() {
+        return {
+          name: this.name,
+          running: this.running,
+          productionRate: this.productionRate,
+          totalClips: this.totalClips
+        };
+      }
+    }
+
+    const factory = new ClipProducer("Graffette S.p.A.", 5);
+
+    function log(message) {
+      const output = document.getElementById("output");
+      output.textContent += message + "\n";
+    }
+
+    function mostraStato() {
+      const stato = factory.status();
+      log(`--- STATO FABBRICA ---\nNome: ${stato.name}\nIn Funzione: ${stato.running}\nRate: ${stato.productionRate}/s\nTotale: ${stato.totalClips}`);
+    }
+  </script>
+
+</body>
+</html>
