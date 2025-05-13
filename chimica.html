@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esperienza di Laboratorio - Ebullioscopia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            color: #333;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            color: #1a3c68;
+            margin-bottom: 10px;
+        }
+
+        header h3 {
+            color: #555;
+            font-weight: normal;
+        }
+
+        .section {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            color: #2b5d88;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #cfddeb;
+            padding-bottom: 5px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-link, .button-detail {
+            display: inline-block;
+            background-color: #1a3c68;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        .button-link:hover, .button-detail:hover {
+            background-color: #274d8a;
+            transform: scale(1.05);
+        }
+
+        #dettaglio-materiali {
+            display: none;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            margin-top: 20px;
+            background: #e8f0fa;
+            padding: 20px;
+            border-left: 5px solid #1a3c68;
+            border-radius: 10px;
+        }
+
+        #dettaglio-materiali.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .material-item {
+            margin-bottom: 20px;
+        }
+
+        .material-item img {
+            max-width: 200px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Esperienza di Laboratorio</h1>
+        <h3>Ebullioscopia - Classe 3° BLSA - Gruppo N. 3</h3>
+        <h3>Bisceglie Davide - Ouazzani Amir - Tridentino Federico</h3>
+    </header>
+
+    <div class="section">
+        <h2>Materiali, strumenti e metodo</h2>
+        <ul>
+            <li>40,65 g di MgCl₂ · 6H₂O</li>
+            <li>200 ml d'acqua distillata</li>
+            <li>Cilindro graduato (250 ml)</li>
+            <li>Agitatore</li>
+            <li>Ancroetta</li>
+            <li>Termometro</li>
+            <li>Bilancia</li>
+        </ul>
+        <button class="button-detail" onclick="toggleDettaglio()">
+            Vedi i materiali in dettaglio
+        </button>
+
+        <div id="dettaglio-materiali">
+            <div class="material-item">
+                <strong>MgCl₂ · 6H₂O:</strong> Sale utilizzato come soluto per aumentare la temperatura di ebollizione dell'acqua.<br>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Magnesium-chloride-hexahydrate-sample.jpg/320px-Magnesium-chloride-hexahydrate-sample.jpg" alt="MgCl2 · 6H2O">
+            </div>
+            <div class="material-item">
+                <strong>Acqua distillata:</strong> Solvente puro per evitare contaminazioni.<br>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Glass_of_water.jpg/320px-Glass_of_water.jpg" alt="Acqua distillata">
+            </div>
+            <div class="material-item">
+                <strong>Cilindro graduato:</strong> Per misurare i volumi.<br>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Cylinder-graduated-250ml.jpg/320px-Cylinder-graduated-250ml.jpg" alt="Cilindro graduato">
+            </div>
+            <div class="material-item">
+                <strong>Agitatore e ancoretta:</strong> Per mescolare la soluzione in modo continuo.<br>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Magnetic_stirrer_with_hotplate.jpg/320px-Magnetic_stirrer_with_hotplate.jpg" alt="Agitatore magnetico">
+            </div>
+            <div class="material-item">
+                <strong>Termometro:</strong> Per misurare la temperatura di ebollizione.<br>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Alcohol_thermometer.jpg/320px-Alcohol_thermometer.jpg" alt="Termometro">
+            </div>
+            <div class="material-item">
+                <strong>Bilancia:</strong> Per pesare con precisione il sale.<br>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Analytical_balance.jpg/320px-Analytical_balance.jpg" alt="Bilancia di precisione">
+            </div>
+            <button class="button-detail" onclick="toggleDettaglio()">
+                Nascondi i dettagli
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function toggleDettaglio() {
+            var dettagli = document.getElementById('dettaglio-materiali');
+            dettagli.classList.toggle('show');
+        }
+    </script>
+
+</body>
+</html>
+<div class="section">
+        <h2>Procedura</h2>
+        <ol>
+            <li>Determinare la costante ebullioscopica per confrontare la temperatura teorica con quella sperimentale.</li>
+            <li>Misurare 40,65 g di MgCl₂ · 6H₂O con bilancia tarata.</li>
+            <li>Prelevare 200 ml di acqua distillata.</li>
+            <li>Inserire l'ancroetta nel becker e versare l'acqua distillata.</li>
+            <li>Accendere l'agitatore e regolare progressivamente l'agitazione.</li>
+            <li>Mettere il termometro nel becker e registrare la temperatura di ebollizione.</li>
+        </ol>
+    </div>
+
+    <div class="section">
+        <h2>Conclusioni e riflessioni</h2>
+        <p>
+            Si sono osservate differenze tra i risultati calcolati e quelli sperimentali, probabilmente a causa di errori di misurazione, difficoltà nel pesare accuratamente il solido e possibili frammenti caduti durante la pesatura.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Grafici e dati raccolti</h2>
+        <p>Qui sotto il grafico e i dati ottenuti durante l'esperimento:</p>
+        <img src="chart.png" alt="Grafico ebullioscopia">
+        <br>
+        <a href="https://docs.google.com/spreadsheets/d/1yxGy1XBEVCLqk1HM-UO3Amjuhy7P2fIkiHI5BDfqKZ4/edit?gid=1991149445#gid=1991149445" class="button-link" target="_blank">
+            Vai al Foglio Google Dati
+        </a>
+        <p>
+            Il grafico mostra l'andamento dell'incremento della temperatura di ebollizione in funzione della concentrazione molale corretta per il coefficiente di Van't Hoff (i).
+            <br><br>
+            La curva blu rappresenta i valori calcolati teoricamente utilizzando la formula dell'ebullioscopia, mentre la curva rossa mostra i dati sperimentali ottenuti durante le prove di laboratorio.
+            <br><br>
+            È evidente che i dati teorici e sperimentali non coincidono perfettamente: in particolare il nostro gruppo (Gruppo 3) ha ottenuto un valore di ΔTeb superiore rispetto al teorico. Questa discrepanza potrebbe essere dovuta a:
+        </p>
+        <ul>
+            <li>Errori nella pesata del sale MgCl₂ · 6H₂O, dovuti a incrostazioni o frammenti persi.</li>
+            <li>Eventuali imprecisioni nella misurazione della temperatura durante l'ebollizione.</li>
+            <li>Possibile errore sistematico nello strumento utilizzato o nella procedura.</li>
+        </ul>
+        <p>
+            Nonostante le discrepanze, l'andamento generale conferma che all'aumentare della concentrazione del soluto, la temperatura di ebollizione cresce, come previsto dalla teoria dell'ebullioscopia.
+        </p>
+    </div>
+
+</body>
+</html>
