@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Risultati Gioco</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    pre {
+      background-color: #f2f2f2;
+      padding: 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    .button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    .button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Risultati Gioco</h1>
+
+  <pre id="jsonResults"></pre>
+
+  <button class="button" onclick="goBack()">Torna al Gioco</button>
+
+  <script>
+    function goBack() {
+      window.location.href = "gioco.html"; 
+    }
+
+
+    const reactionTimes = JSON.parse(localStorage.getItem("reactionTimes"));
+    document.getElementById("jsonResults").textContent = JSON.stringify(reactionTimes, null, 2);
+  </script>
+
+</body>
+</html>

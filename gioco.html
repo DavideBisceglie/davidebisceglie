@@ -30,6 +30,20 @@
     #result {
       margin-top: 40px;
       font-size: 18px;
+      white-space: pre-line;
+    }
+    .button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    .button:hover {
+      background-color: #45a049;
     }
   </style>
 </head>
@@ -41,6 +55,8 @@
   <div id="numberContainer"></div>
 
   <p id="result"></p>
+
+  <button class="button" onclick="goToResults()">Visualizza Risultati</button>
 
   <script>
     const reactionTimes = [];
@@ -68,22 +84,19 @@
       numberContainer.innerHTML = "";
       let numbers = [];
 
-      // genera un numero primo
       do {
         currentPrime = getRandomNumber();
       } while (!isPrime(currentPrime));
 
       numbers.push(currentPrime);
 
-      // aggiungi 3 numeri NON primi
       while (numbers.length < 4) {
         let n = getRandomNumber();
-        if (!isPrime(n)) {
+        if (!isPrime(n) && !numbers.includes(n)) {
           numbers.push(n);
         }
       }
 
-      // mescola i numeri
       numbers.sort(() => Math.random() - 0.5);
 
       numbers.forEach(num => {
@@ -101,20 +114,26 @@
       if (clickedNumber === currentPrime) {
         const reactionTime = Date.now() - startTime;
         reactionTimes.push(reactionTime);
+        result.textContent = `Bravo! Tempo di reazione: ${reactionTime} ms`;
         round++;
 
         if (round >= maxRounds) {
           clearInterval(interval);
           numberContainer.innerHTML = "";
-          result.textContent = "Gioco finito! Tempi di reazione (ms): " + reactionTimes.join(", ");
+          result.textContent += "\nGioco finito! Tempi di reazione (ms): " + reactionTimes.join(", ");
         }
       }
     }
 
-    // primo turno
+    function goToResults() {
+
+      localStorage.setItem("reactionTimes", JSON.stringify(reactionTimes));
+
+      window.location.href = "giocate.html";
+    }
+
     generateRound();
 
-    // turni successivi ogni 3 secondi
     const interval = setInterval(() => {
       if (round < maxRounds) {
         generateRound();
