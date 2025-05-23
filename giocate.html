@@ -16,19 +16,27 @@
       font-size: 16px;
       white-space: pre-wrap;
       word-wrap: break-word;
+      max-width: 600px;
+      margin: 20px auto;
     }
-    .button {
-      margin-top: 20px;
+    .button, input[type="text"] {
+      margin-top: 10px;
       padding: 10px 20px;
       font-size: 16px;
-      cursor: pointer;
+      border-radius: 5px;
+      border: none;
+    }
+    .button {
       background-color: #4CAF50;
       color: white;
-      border: none;
-      border-radius: 5px;
+      cursor: pointer;
     }
     .button:hover {
       background-color: #45a049;
+    }
+    input[type="text"] {
+      border: 1px solid #ccc;
+      width: 250px;
     }
   </style>
 </head>
@@ -36,18 +44,44 @@
 
   <h1>Risultati Gioco</h1>
 
+  <input type="text" id="fullName" placeholder="Nome e Cognome" /><br>
+  <button class="button" onclick="downloadJSON()">Scarica Risultati</button>
+
   <pre id="jsonResults"></pre>
 
   <button class="button" onclick="goBack()">Torna al Gioco</button>
 
   <script>
     function goBack() {
-      window.location.href = "gioco.html"; 
+      window.location.href = "gioco2.html";
     }
 
+    const reactionTimes = JSON.parse(localStorage.getItem("reactionTimes")) || [];
+    const resultData = { tempi_di_reazione_ms: reactionTimes };
 
-    const reactionTimes = JSON.parse(localStorage.getItem("reactionTimes"));
-    document.getElementById("jsonResults").textContent = JSON.stringify(reactionTimes, null, 2);
+    document.getElementById("jsonResults").textContent = JSON.stringify(resultData, null, 2);
+
+    function downloadJSON() {
+      const fullName = document.getElementById("fullName").value.trim();
+      if (!fullName) {
+        alert("Inserisci nome e cognome.");
+        return;
+      }
+
+      const dataToSave = {
+        nome: fullName,
+        risultati: reactionTimes
+      };
+
+      const blob = new Blob([JSON.stringify(dataToSave, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `risultati_${fullName.replace(/\s+/g, "_")}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
   </script>
 
 </body>
